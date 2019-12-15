@@ -1,1 +1,27 @@
-<p>authors-list works!</p>
+<section *ngIf="!isLoading" class="mat-typography">
+  <h2>List of authors: </h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let author of sharedService.authors">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Author
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ author.name }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <a [routerLink]="['/authors', author.id]" class="author-link">
+        <mat-icon>account_box</mat-icon>
+        <span class="author-link__text">Show authors page</span>
+      </a>
+      <mat-list>
+        <a [routerLink]="['/books', book.id]" *ngFor="let book of author.books">
+            <mat-list-item>{{ book.title }}</mat-list-item>
+        </a>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>
+<div *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>

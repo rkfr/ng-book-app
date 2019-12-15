@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-authors-list',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authors-list.component.scss']
 })
 export class AuthorsListComponent implements OnInit {
+  constructor(private shared: SharedService) { }
 
-  constructor() { }
+  private isLoading: boolean = true;
 
   ngOnInit() {
+    this.shared.fetchAuthorsList().subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
 }

@@ -1,0 +1,14 @@
+.author-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  text-decoration: none;
+  
+  &__text {
+    padding-left: 1rem;
+  }
+}
+
+.mat-progress-spinner {
+  margin-left: 50%;
+}

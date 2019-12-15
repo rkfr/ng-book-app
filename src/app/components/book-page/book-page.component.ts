@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { SharedService } from '../../services/shared.service';
-import { Book } from '../../services/Book.interface';
+import { Book } from '../../services/book.interface';
 
 @Component({
   selector: 'app-book-page',

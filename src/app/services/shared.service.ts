@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
-import { Book } from './Book.interface';
-import { Author } from './Author.interface';
+import { Book } from './book.interface';
+import { Author } from './author.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { SharedService } from '../../services/shared.service';
-import { Author } from '../../services/Author.interface';
+import { Author } from '../../services/author.interface';
 
 @Component({
   selector: 'app-author-page',

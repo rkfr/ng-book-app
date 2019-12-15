@@ -1,0 +1,24 @@
+<header>
+  <mat-toolbar class="toolbar">
+    <div class="container content-container mat-typography">
+      <mat-form-field>
+        <input 
+          matInput 
+          [(ngModel)]="service.search"
+          type="text" 
+          placeholder="Search..."
+        >
+      </mat-form-field>
+      <mat-nav-list class="nav">
+        <a mat-list-item [routerLink]="'/authors'">Authors</a>
+        <a mat-list-item [routerLink]="'/books'">Books</a>
+      </mat-nav-list>
+    </div>
+  </mat-toolbar>
+</header>
+<main class="main">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<footer></footer>

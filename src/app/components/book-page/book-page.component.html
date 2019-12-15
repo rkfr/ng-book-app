@@ -1,1 +1,26 @@
-<p>book-page works!</p>
+<section *ngIf="!loading" class="book mat-typography">
+  <div class="container">
+    <h1 class="book__title">{{ book.title }}</h1>
+    <div class="book__about">
+      <span>Genre: </span>
+      <a class="book__genre"
+        [routerLink]="'/genre'" 
+        *ngFor="let genre of book.genre" 
+        (click)="onUpdateGenre(genre)"
+      >
+        {{ genre }},
+      </a>
+    </div>
+    <div class="book__about">
+      <span>Author: </span>
+      <a [routerLink]="['/authors', book.author_id]" class="book__author" *ngFor="let author of book.authors">
+          {{ author }}
+      </a>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="book__description">{{ book.description }}</p>
+  </div>
+</section>
+<div *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

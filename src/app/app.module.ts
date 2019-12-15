@@ -13,6 +13,7 @@ import { BookPageComponent } from './components/book-page/book-page.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { GenrePageComponent } from './components/genre-page/genre-page.component';
 import { SearchFilter } from './services/search-filter.pipe';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchFilter } from './services/search-filter.pipe';
     BookPageComponent,
     AuthorPageComponent,
     GenrePageComponent,
-    SearchFilter
+    SearchFilter,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

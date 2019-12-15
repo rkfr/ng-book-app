@@ -6,6 +6,7 @@ import { BookPageComponent } from './components/book-page/book-page.component';
 import { AuthorsListComponent } from './components/authors-list/authors-list.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { GenrePageComponent } from './components/genre-page/genre-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'books', component: BookListComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'authors/:id', component: AuthorPageComponent },
   { path: 'genre', component: GenrePageComponent },
   { path: '', redirectTo: './books', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

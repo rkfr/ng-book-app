@@ -13,3 +13,13 @@
 .mat-progress-spinner {
   margin-left: 50%;
 }
+
+.book-title,
+.book-author {
+  color: #00796b;
+  text-decoration: none;
+
+  &:hover {
+    color: #00bcd4;
+  }
+}

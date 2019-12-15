@@ -18,10 +18,22 @@
 
   &__genre {
     margin-left: 1rem;
+    color: #00796b;
+    text-decoration: none;
+
+    &:hover {
+      color: #00bcd4;
+    }
   }
 
   &__author {
     margin-left: 1rem;
+    color: #00796b;
+    text-decoration: none;
+
+    &:hover {
+      color: #00bcd4;
+    }
   }
 
   &__description {

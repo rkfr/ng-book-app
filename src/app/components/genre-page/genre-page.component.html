@@ -26,15 +26,12 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-divider></mat-divider>
 
-  <h2>Genres: </h2>
+  <mat-divider></mat-divider>
+  <h2>Genre: </h2>
   <mat-chip-list aria-label="Genre selection">
-    <mat-chip *ngFor="let genre of displayedGenres">
-      {{ genre }}
+    <mat-chip>
+      {{ genre || 'No genre selected' }}
     </mat-chip>
   </mat-chip-list>
 </section>
-<div *ngIf="isLoading">
-  <mat-spinner></mat-spinner>
-</div>

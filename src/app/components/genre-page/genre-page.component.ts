@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BookService } from '../../services/book.service';
-import { Book } from '../../services/book.interface';
+import { GenreService } from '../../services/genre.service';
+import { Book } from '../../interfaces/book.interface';
 
 @Component({
   selector: 'app-genre-page',
@@ -9,15 +10,23 @@ import { Book } from '../../services/book.interface';
   styleUrls: ['./genre-page.component.scss']
 })
 export class GenrePageComponent implements OnInit {
-  constructor(private bookService: BookService) { }
+  constructor(
+    private bookService: BookService,
+    private genreService: GenreService
+  ) { }
 
-  private books: Book[];
+  books: Book[];
+  genre: string;
 
-  private displayedColumns: string[] = ['title', 'author'];
+  displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
+    this.genreService.genre.subscribe(genre => {
+      this.genre = genre;
+    });
+
     this.bookService.books.subscribe(books => {
-      this.books = books;
+      this.books = books.filter(({ genre }) => genre.includes(this.genre));
     });
   }
 }

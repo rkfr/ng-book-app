@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { BookService } from '../../services/book.service';
+import { GenreService } from '../../services/genre.service';
 import { Book } from '../../interfaces/book.interface';
 
 @Component({
@@ -12,7 +13,8 @@ import { Book } from '../../interfaces/book.interface';
 export class BookPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private genreService: GenreService
   ) { }
 
   private loading: boolean = true;
@@ -31,7 +33,7 @@ export class BookPageComponent implements OnInit {
     });
   }
 
-  // onUpdateGenre(genre: string) {
-  //   this.shared.setGenre(genre);
-  // }
+  onUpdateGenre(genre: string) {
+    this.genreService.updateGenre(genre);
+  }
 }

@@ -1,7 +1,7 @@
 <section *ngIf="!isLoading" class="mat-typography">
   <h2>List of authors: </h2>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let author of shared.authors">
+    <mat-expansion-panel *ngFor="let author of authors">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Author
@@ -16,7 +16,7 @@
       </a>
       <mat-list>
         <a [routerLink]="['/books', book.id]" *ngFor="let book of author.books">
-            <mat-list-item>{{ book.title }}</mat-list-item>
+          <mat-list-item>{{ book.title }}</mat-list-item>
         </a>
       </mat-list>
     </mat-expansion-panel>

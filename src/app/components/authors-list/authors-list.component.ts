@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../../services/shared.service';
+
+import { AuthorsService } from '../../services/authors.service';
+import { Author } from '../../interfaces/author.interface';
 
 @Component({
   selector: 'app-authors-list',
@@ -7,14 +9,18 @@ import { SharedService } from '../../services/shared.service';
   styleUrls: ['./authors-list.component.scss']
 })
 export class AuthorsListComponent implements OnInit {
-  constructor(private shared: SharedService) { }
 
-  private isLoading: boolean = true;
+  constructor(private authorsService: AuthorsService) { }
+
+  private isLoading = true;
+  private authors: Author[];
 
   ngOnInit() {
-    this.shared.fetchAuthorsList().subscribe(() => {
-      this.isLoading = false;
-    });
-  }
+    this.authorsService.loadAuthors();
 
+    this.authorsService.authors.subscribe(authors => {
+      this.authors = authors;
+      this.isLoading = false;
+    })
+  }
 }

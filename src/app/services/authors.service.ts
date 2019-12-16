@@ -1,23 +1,22 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from 'rxjs';
-
-import { Author } from '../interfaces/author.interface';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+import { Author } from '../interfaces/author.interface';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthorsService {
-    private _authors = new BehaviorSubject<Author[]>([]);
-    private baseUrl = 'http://localhost:3004';
+  private baseUrl = 'http://localhost:3004';
 
-    constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) { };
 
-    get todos() {
-        return this._authors.asObservable();
-    }
+  public authors: BehaviorSubject<Author[]> = new BehaviorSubject([]);
 
-    fetchAuthors() {
-        this.http.get(`${this.baseUrl}/authors`).subscribe((data: Author[]) => {
-            this._authors.next(data);
-        }, err => console.log(`loading error: ${err}`));
-    }
+  loadAuthors() {
+    this.http.get(`${this.baseUrl}/authors`).subscribe((data: Author[]) => {
+      this.authors.next(data);
+    });
+  }
 }

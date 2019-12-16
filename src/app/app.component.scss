@@ -1,7 +1,7 @@
 .container {
   margin: 0 auto;
   width: 100%;
-  max-width: 1170px;
+  // max-width: 1170px;
 }
 
 .toolbar {
@@ -20,4 +20,61 @@
 
 .main {
   padding: 50px 0;
+}
+
+@media screen and (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media screen and (max-width: 566px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content-container {
+    display: block;
+    text-align: center;
+  }
+
+  .nav {
+    justify-content: space-around;
+  }
+
+  .toolbar {
+    padding: 90px 0;
+  }
+
+  .app-title {
+    padding-left: 15px;
+  }
+
+  .mat-list-item {
+    text-align: center;
+  }
+
+  .mat-list-item-content {
+    justify-content: center;
+  }
 }

@@ -1,16 +1,16 @@
 <section *ngIf="!isLoading" class="mat-typography">
   <h1>List of available books:</h1>
-  
+
   <mat-table [dataSource]="shared.filteredBooks | booksSearch: shared.search" class="mat-elevation-z8">
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef> Book title </mat-header-cell>
       <mat-cell *matCellDef="let book">
         <a [routerLink]="['/books', book.id]" class="book-title">
           {{ book.title }}
-        </a> 
+        </a>
       </mat-cell>
     </ng-container>
-    
+
     <ng-container matColumnDef="author">
       <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
       <mat-cell *matCellDef="let book">
@@ -20,13 +20,6 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="genre">
-      <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
-      <mat-cell *matCellDef="let book">
-        {{ book.genre }}
-      </mat-cell>
-    </ng-container>
-    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

@@ -11,7 +11,7 @@ export class BookListComponent implements OnInit {
 
   private isLoading: boolean = true;
 
-  displayedColumns: string[] = ['title', 'author', 'genre'];
+  displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
     this.shared.fetchBookList().subscribe(() => {

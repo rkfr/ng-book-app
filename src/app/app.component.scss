@@ -1,7 +1,6 @@
 .container {
   margin: 0 auto;
   width: 100%;
-  // max-width: 1170px;
 }
 
 .toolbar {
@@ -58,23 +57,16 @@
     text-align: center;
   }
 
-  .nav {
-    justify-content: space-around;
+  .toolbar {
+    padding: 100px 0;
   }
 
-  .toolbar {
-    padding: 90px 0;
+  .nav {
+    justify-content: space-around;
   }
 
   .app-title {
     padding-left: 15px;
   }
 
-  .mat-list-item {
-    text-align: center;
-  }
-
-  .mat-list-item-content {
-    justify-content: center;
-  }
 }

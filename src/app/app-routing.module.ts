@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'authors', component: AuthorsListComponent },
   { path: 'authors/:id', component: AuthorPageComponent },
   { path: 'genre', component: GenrePageComponent },
+  { path: '/404', component: NotFoundComponent },
   { path: '', redirectTo: './books', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

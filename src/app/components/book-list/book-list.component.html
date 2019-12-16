@@ -1,7 +1,7 @@
 <section *ngIf="!isLoading" class="mat-typography">
   <h1>List of available books:</h1>
 
-  <mat-table [dataSource]="shared.filteredBooks | booksSearch: shared.search" class="mat-elevation-z8">
+  <mat-table [dataSource]="booksMap" class="mat-elevation-z8">
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef> Book title </mat-header-cell>
       <mat-cell *matCellDef="let book">

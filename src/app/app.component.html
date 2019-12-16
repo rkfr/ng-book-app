@@ -3,7 +3,11 @@
     <div class="container content-container mat-typography">
       <h1 class="app-title">Book App</h1>
       <mat-form-field>
-        <input matInput [(ngModel)]="service.search" type="text" placeholder="Search...">
+        <input 
+          matInput
+          type="text" 
+          placeholder="Search..."
+        >
       </mat-form-field>
       <mat-nav-list class="nav">
         <a mat-list-item [routerLink]="'/authors'">Authors</a>

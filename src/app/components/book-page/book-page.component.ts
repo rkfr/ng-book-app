@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SharedService } from '../../services/shared.service';
-import { Book } from '../../services/book.interface';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../interfaces/book.interface';
 
 @Component({
   selector: 'app-book-page',
@@ -12,22 +12,26 @@ import { Book } from '../../services/book.interface';
 export class BookPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private shared: SharedService
+    private bookService: BookService
   ) { }
 
   private loading: boolean = true;
 
   book: Book;
-  bookId: string = this.route.snapshot.params.id;
+  bookId: string;
 
   ngOnInit() {
-    this.shared.getBook(this.bookId).subscribe((book: Book) => {
+    this.route.params.subscribe(({ id }) => {
+      this.bookId = id;
+    });
+
+    this.bookService.loadBook(this.bookId).subscribe((book: Book) => {
       this.book = book;
       this.loading = false;
     });
   }
 
-  onUpdateGenre(genre: string) {
-    this.shared.setGenre(genre);
-  }
+  // onUpdateGenre(genre: string) {
+  //   this.shared.setGenre(genre);
+  // }
 }

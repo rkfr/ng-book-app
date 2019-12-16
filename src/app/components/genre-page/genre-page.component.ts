@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SharedService } from '../../services/shared.service';
+import { BookService } from '../../services/book.service';
 import { Book } from '../../services/book.interface';
 
 @Component({
@@ -9,25 +9,15 @@ import { Book } from '../../services/book.interface';
   styleUrls: ['./genre-page.component.scss']
 })
 export class GenrePageComponent implements OnInit {
-  constructor(private shared: SharedService) { }
+  constructor(private bookService: BookService) { }
 
-  private isLoading: boolean = true;
+  private books: Book[];
 
-  books: Book[];
-  displayedColumns: string[] = ['title', 'author'];
-  displayedGenres: string[];
+  private displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
-    const genre = this.shared.getGenre();
-
-    this.books = this.shared.books.filter((book: Book) => book.genre.includes(genre));
-    
-    this.displayedGenres = this.books.reduce((genres, book) => {
-      const { genre } = book;
-      genres = [...genre];
-      return genres;
-    }, [])
-
-    this.isLoading = false;
+    this.bookService.books.subscribe(books => {
+      this.books = books;
+    });
   }
 }

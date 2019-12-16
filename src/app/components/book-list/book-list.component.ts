@@ -12,10 +12,10 @@ export class BookListComponent implements OnInit {
 
   constructor(private bookService: BookService) { }
 
-  private isLoading: boolean = true;
-  private booksMap: Book[];
+  isLoading: boolean = true;
+  booksMap: Book[];
 
-  private displayedColumns: string[] = ['title', 'author'];
+  displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
     this.bookService.loadBooks();

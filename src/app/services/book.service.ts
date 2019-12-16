@@ -8,13 +8,21 @@ import { Book } from '../interfaces/book.interface';
   providedIn: 'root'
 })
 export class BookService {
+  private baseUrl = 'http://localhost:3004';
+
   constructor(private http: HttpClient) { };
 
   public books: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
   loadBooks() {
-    this.http.get(`http://localhost:3004/books`).subscribe((data: Book[]) => {
-      this.books.next(data);
-    });
+    return this.http
+      .get(`${this.baseUrl}/books`)
+      .subscribe((data: Book[]) => {
+        this.books.next(data);
+      });
+  }
+
+  loadBook(bookId: string) {
+    return this.http.get<Book>(`${this.baseUrl}/books/${bookId}`);
   }
 };

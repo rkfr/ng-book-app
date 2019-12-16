@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SharedService } from '../../services/shared.service';
-import { Author } from '../../services/author.interface';
+import { AuthorsService } from '../../services/authors.service';
+import { Author } from '../../interfaces/author.interface';
 
 @Component({
   selector: 'app-author-page',
@@ -11,17 +11,21 @@ import { Author } from '../../services/author.interface';
 })
 export class AuthorPageComponent implements OnInit {
   constructor(
-    private shared: SharedService,
+    private authorsService: AuthorsService,
     private route: ActivatedRoute
   ) { }
 
   private loading: boolean = true;
 
   author: Author;
-  authorId: string = this.route.snapshot.params.id;
+  authorId: string;
 
   ngOnInit() {
-    this.shared.getAuthor(this.authorId).subscribe((author: Author) => {
+    this.route.params.subscribe(({ id }) => {
+      this.authorId = id;
+    });
+
+    this.authorsService.loadAuthor(this.authorId).subscribe((author: Author) => {
       this.author = author;
       this.loading = false;
     });

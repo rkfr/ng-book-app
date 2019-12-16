@@ -19,4 +19,8 @@ export class AuthorsService {
       this.authors.next(data);
     });
   }
+
+  loadAuthor(authorId) {
+    return this.http.get<Author>(`${this.baseUrl}/authors/${authorId}`);
+  }
 }

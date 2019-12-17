@@ -9,7 +9,6 @@
 
   <div *ngIf="!isLoading">
     <mat-table *ngIf="genre; else genresGroup" [dataSource]="booksByFilter" class="mat-elevation-z8">
-      <!-- <mat-table [dataSource]="books" class="mat-elevation-z8"> -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef> Book title </mat-header-cell>
         <mat-cell *matCellDef="let book">
@@ -33,6 +32,19 @@
     </mat-table>
   </div>
 
+  <mat-divider></mat-divider>
+
+  <div *ngIf="genre as currentGenre">
+    <h3>Select another genre:</h3>
+    <div class="genres-group">
+      <ng-container *ngFor="let genre of genresList">
+        <button mat-raised-button *ngIf="currentGenre !== genre" (click)="onSelectGenre(genre)"
+          class="genres-group__button">
+          {{ genre }}
+        </button>
+      </ng-container>
+    </div>
+  </div>
 </section>
 
 <ng-template #genresGroup>

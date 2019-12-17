@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 import { BookService } from '../../services/book.service';
-import { Book } from '../../interfaces/book.interface';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-book-list',
@@ -10,18 +11,29 @@ import { Book } from '../../interfaces/book.interface';
 })
 export class BookListComponent implements OnInit {
 
-  constructor(private bookService: BookService) { }
+  constructor(
+    private bookService: BookService,
+    private searchService: SearchService
+  ) { }
 
   isLoading: boolean = true;
-  booksMap: Book[];
+  booksMap;
 
   displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
     this.bookService.books.subscribe(books => {
-      this.booksMap = books;
+      this.booksMap = new MatTableDataSource(books);
       this.isLoading = false;
-    })
+    });
+
+    this.searchService.searchQuery.subscribe(query => {
+      this.applyFilter(query);
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.booksMap.filter = filterValue;
   }
 
 }

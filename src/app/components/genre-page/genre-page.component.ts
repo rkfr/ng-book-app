@@ -12,11 +12,11 @@ import { Book } from '../../interfaces/book.interface';
 export class GenrePageComponent implements OnInit {
   constructor(
     private bookService: BookService,
-    private genreService: GenreService
+    private genreService: GenreService,
   ) { }
 
   books: Book[];
-  booksByFilter: Book[];
+  booksByGenre: Book[];
   genre: string;
   genresList: string[];
   isLoading: boolean = true;
@@ -46,6 +46,7 @@ export class GenrePageComponent implements OnInit {
   }
 
   setFilterByGenre() {
-    this.booksByFilter = this.books.filter(({ genre }) => genre.includes(this.genre));
+    this.booksByGenre = this.books.filter(({ genre }) => genre.includes(this.genre));
   }
+
 }

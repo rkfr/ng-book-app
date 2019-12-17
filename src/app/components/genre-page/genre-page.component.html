@@ -8,7 +8,7 @@
   <mat-divider></mat-divider>
 
   <div *ngIf="!isLoading">
-    <mat-table *ngIf="genre; else genresGroup" [dataSource]="booksByFilter" class="mat-elevation-z8">
+    <mat-table *ngIf="genre; else genresGroup" [dataSource]="booksByGenre" class="mat-elevation-z8">
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef> Book title </mat-header-cell>
         <mat-cell *matCellDef="let book">

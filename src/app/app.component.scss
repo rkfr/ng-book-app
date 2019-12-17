@@ -17,6 +17,12 @@
   display: flex;
 }
 
+.app-title {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+
 .main {
   padding: 50px 0;
 }

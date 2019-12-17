@@ -4,9 +4,21 @@
       <a mat-list-item [routerLink]="'/books'" class="app-title">
         <h1>Book App</h1>
       </a>
-      <mat-form-field>
-        <input matInput type="text" placeholder="Search..." (keyup)="onUpdateQuery($event.target.value)">
-      </mat-form-field>
+      <form class="search-form">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Search..." [formControl]="searchControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.title">
+              <a mat-list-item [routerLink]="option.pagePath" class="search-item">
+                {{ option.pageName }} | {{ option.title }}
+              </a>
+            </mat-option>
+          </mat-autocomplete>
+          <mat-hint>The Guardian, Shirley</mat-hint>
+
+        </mat-form-field>
+      </form>
+
       <mat-nav-list class="nav">
         <a mat-list-item [routerLink]="'/authors'">Authors</a>
         <a mat-list-item [routerLink]="'/books'">Books</a>

@@ -11,6 +11,8 @@ import {
   MatDividerModule,
   MatChipsModule,
   MatProgressSpinnerModule,
+  MatAutocompleteModule,
+  MatOptionModule,
 } from '@angular/material';
 
 const material = [
@@ -25,6 +27,8 @@ const material = [
   MatDividerModule,
   MatChipsModule,
   MatProgressSpinnerModule,
+  MatOptionModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({

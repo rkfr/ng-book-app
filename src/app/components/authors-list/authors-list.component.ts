@@ -16,8 +16,6 @@ export class AuthorsListComponent implements OnInit {
   authors: Author[];
 
   ngOnInit() {
-    this.authorsService.loadAuthors();
-
     this.authorsService.authors.subscribe(authors => {
       this.authors = authors;
       this.isLoading = false;

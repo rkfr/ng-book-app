@@ -27,6 +27,25 @@
   padding: 50px 0;
 }
 
+
+::ng-deep .mat-form-field-wrapper, 
+::ng-deep .mat-form-field{
+  width: 100%;
+}
+
+// ::ng-deep .mat-list-item-content {
+//   font-size: .83rem;
+//   line-height: .83rem;
+// }
+
+.search-form {
+  flex-basis: 30%;
+}
+
+.search-item {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 576px) {
   .container {
     max-width: 540px;

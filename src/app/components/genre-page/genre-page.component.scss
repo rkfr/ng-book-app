@@ -3,7 +3,7 @@
 }
 
 .mat-divider {
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .book-title,
@@ -13,5 +13,19 @@
 
   &:hover {
     color: #00bcd4;
+  }
+}
+
+.mat-chip-list-wrapper {
+  padding-bottom: 2rem;
+}
+
+.genres-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__button {
+    margin: 1rem;
   }
 }

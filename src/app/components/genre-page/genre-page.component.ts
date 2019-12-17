@@ -17,6 +17,7 @@ export class GenrePageComponent implements OnInit {
 
   books: Book[];
   genre: string;
+  genresList: string[];
 
   displayedColumns: string[] = ['title', 'author'];
 
@@ -26,7 +27,24 @@ export class GenrePageComponent implements OnInit {
     });
 
     this.bookService.books.subscribe(books => {
-      this.books = books.filter(({ genre }) => genre.includes(this.genre));
+      this.books = books;
+      
+      this.genresList = books.reduce((genres, book) => (
+        Array.from(new Set([...genres, ...book.genre]))
+      ), []);
+
+      this.filterBooks();
     });
+  }
+
+  onSelectGenre(genre) {
+    this.genreService.updateGenre(genre);
+    this.bookService.loadBooks();
+    
+    this.filterBooks();
+  }
+  
+  filterBooks() {
+    this.books = this.books.filter(({ genre }) => genre.includes(this.genre));
   }
 }

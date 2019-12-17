@@ -24,7 +24,7 @@ const material = [
   MatTableModule,
   MatDividerModule,
   MatChipsModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

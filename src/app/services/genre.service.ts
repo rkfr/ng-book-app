@@ -5,9 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class GenreService {
-    public genre: BehaviorSubject<string> = new BehaviorSubject('');
+  public genre: BehaviorSubject<string> = new BehaviorSubject('');
 
-    updateGenre(genre: string) {
-        this.genre.next(genre);
-    }
+  updateGenre(genre: string) {
+    return this.genre.next(genre);
+  }
 }

@@ -18,8 +18,6 @@ export class BookListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
-    this.bookService.loadBooks();
-
     this.bookService.books.subscribe(books => {
       this.booksMap = books;
       this.isLoading = false;

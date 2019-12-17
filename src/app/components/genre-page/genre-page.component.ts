@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { GenreService } from '../../services/genre.service';
 import { Book } from '../../interfaces/book.interface';
+import { Genre } from '../../interfaces/genre.interface';
 
 @Component({
   selector: 'app-genre-page',
@@ -18,14 +19,14 @@ export class GenrePageComponent implements OnInit {
   books: Book[];
   booksByGenre: Book[];
   genre: string;
-  genresList: string[];
+  genresList: Genre[];
   isLoading: boolean = true;
 
   displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
-    this.genreService.genre.subscribe(genre => {
-      this.genre = genre;
+    this.genreService.genresList.subscribe(genres => {
+      this.genresList = genres;
     });
 
     this.bookService.books.subscribe(books => {
@@ -33,11 +34,12 @@ export class GenrePageComponent implements OnInit {
       this.setFilterByGenre();
 
       this.isLoading = false;
+    });
 
-      this.genresList = books.reduce((genres, book) => (
-        Array.from(new Set([...genres, ...book.genre]))
-      ), []);
-    })
+    this.genreService.genre.subscribe(genre => {
+      this.genre = genre;
+      this.setFilterByGenre();
+    });
   }
 
   onSelectGenre(genre) {

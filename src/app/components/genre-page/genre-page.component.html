@@ -31,28 +31,31 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
-
-  <mat-divider></mat-divider>
-
-  <div *ngIf="genre as currentGenre">
-    <h3>Select another genre:</h3>
+  
+  <ng-template #genresGroup>
+    <h3>Select:</h3>
     <div class="genres-group">
-      <ng-container *ngFor="let genre of genresList">
-        <button mat-raised-button *ngIf="currentGenre !== genre" (click)="onSelectGenre(genre)"
-          class="genres-group__button">
-          {{ genre }}
-        </button>
-      </ng-container>
+      <button mat-raised-button *ngFor="let genre of genresList" (click)="onSelectGenre(genre.name)"
+        class="genres-group__button">
+        {{ genre.name }}
+      </button>
+    </div>
+  </ng-template>
+
+  <div class="genres-offer">
+    <mat-divider></mat-divider>
+    <div *ngIf="genre as currentGenre">
+      <h3>Select another genre:</h3>
+      <div class="genres-group">
+        <ng-container *ngFor="let genre of genresList">
+          <button mat-raised-button *ngIf="currentGenre !== genre.id" (click)="onSelectGenre(genre.name)"
+            class="genres-group__button">
+            {{ genre.name }}
+          </button>
+        </ng-container>
+      </div>
     </div>
   </div>
+
 </section>
 
-<ng-template #genresGroup>
-  <h3>Select:</h3>
-  <div class="genres-group">
-    <button mat-raised-button *ngFor="let genre of genresList" (click)="onSelectGenre(genre)"
-      class="genres-group__button">
-      {{ genre }}
-    </button>
-  </div>
-</ng-template>

@@ -1,4 +1,4 @@
-<header>
+<header class="header">
   <mat-toolbar class="toolbar">
     <div class="container content-container mat-typography">
       <a mat-list-item [routerLink]="'/books'" class="app-title">
@@ -9,12 +9,12 @@
           <input matInput type="text" placeholder="Search..." [formControl]="searchControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.title">
-              <a mat-list-item [routerLink]="option.pagePath" class="search-item">
+              <a mat-list-item [routerLink]="option.pagePath" class="search-item" (click)="onUpdateGenre(option.title)">
                 {{ option.pageName }} | {{ option.title }}
               </a>
             </mat-option>
           </mat-autocomplete>
-          <mat-hint>The Guardian, Shirley</mat-hint>
+          <mat-hint>For example: The Guardian; Oscar Wilde; Novel;</mat-hint>
 
         </mat-form-field>
       </form>

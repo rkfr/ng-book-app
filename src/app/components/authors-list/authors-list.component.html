@@ -1,6 +1,6 @@
 <section *ngIf="!isLoading" class="mat-typography">
   <h2>List of authors: </h2>
-  <mat-accordion>
+  <mat-accordion multi="true">
     <mat-expansion-panel *ngFor="let author of authors">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -15,8 +15,15 @@
         <span class="author-link__text">Show authors page</span>
       </a>
       <mat-list>
-        <a [routerLink]="['/books', book.id]" *ngFor="let book of author.books">
-          <mat-list-item>{{ book.title }}</mat-list-item>
+        <a 
+          [routerLink]="['/books', book.id]" 
+          *ngFor="let book of author.books"
+          class="author-link__book-link"
+        >
+          <mat-list-item>
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span class="author-link__book-text">{{ book.title }}</span>
+          </mat-list-item>
         </a>
       </mat-list>
     </mat-expansion-panel>

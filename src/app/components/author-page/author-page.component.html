@@ -4,14 +4,27 @@
     <p class="author__text">{{ author.short_bio }}</p>
     <p class="author__text author__bio">{{ author.bio }}</p>
     <mat-divider></mat-divider>
-    <h2 class="author__books-list-title">
-      List of books written by the author: 
+    <h2 class="author__book-list-title">
+      <mat-icon aria-hidden="false" aria-label="list of books">list</mat-icon>
+      <span>Books written by the author: </span>
     </h2>
-    <mat-list>
-      <mat-list-item *ngFor="let book of author.books">
-        <a [routerLink]="['/books', book.id]" matLine>{{ book.title }}</a>
-        <ul matLine class="genre-list">
-          <li *ngFor="let genre of book.genre">
+    <mat-list class="authors-book-list">
+      <mat-list-item 
+        *ngFor="let book of author.books"
+        class="authors-book-list__item"
+      >
+        <a 
+          [routerLink]="['/books', book.id]" 
+          matLine
+          class="authors-book-list__link"
+        >
+          {{ book.title }}
+        </a>
+        <ul matLine class="genres-list" >
+          <li 
+            *ngFor="let genre of book.genre"
+            class="genres-list__item"
+          >
             {{ genre }}
           </li>
         </ul>

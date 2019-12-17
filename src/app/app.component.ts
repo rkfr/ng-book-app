@@ -5,6 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 
 import { BookService } from './services/book.service';
 import { AuthorsService } from './services/authors.service';
+import { GenreService } from './services/genre.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authorsService: AuthorsService,
-    private bookService: BookService
+    private bookService: BookService,
+    private genreService: GenreService
   ) { }
 
   searchOptions = [];
@@ -26,13 +28,15 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.bookService.loadBooks();
     this.authorsService.loadAuthors();
+    this.genreService.loadGenresList();
 
     this.subscribeOnBooks();
     this.subscribeOnAuthors();
+    this.subscribeOnGenres();
 
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       startWith(''),
-      map(value => this.filter(value))
+      map(value => this.filterSearchInput(value))
     );
 
   }
@@ -53,7 +57,24 @@ export class AppComponent implements OnInit {
     })
   }
 
-  private setOptions(dataMap, type, categoryName) {
+  subscribeOnGenres() {
+    this.genreService.genresList.subscribe(genres => {
+      this.searchOptions = [
+        ...this.searchOptions,
+        ...genres.map(genre => ({
+          title: genre.name,
+          pagePath: '/genre',
+          pageName: 'Genre'
+        }))
+      ]
+    })
+  }
+
+  onUpdateGenre(option: string) {
+    this.genreService.updateGenre(option);
+  }
+
+  private setOptions(dataMap, type: string, categoryName: string) {
     this.searchOptions = [...this.searchOptions, ...dataMap.map(data => ({
       title: data[type],
       pagePath: `/${categoryName.toLowerCase()}/${data.id}`,
@@ -61,7 +82,7 @@ export class AppComponent implements OnInit {
     }))];
   }
 
-  private filter(value: string): string[] {
+  private filterSearchInput(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.searchOptions.filter(option => {

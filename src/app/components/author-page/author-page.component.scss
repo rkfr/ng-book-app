@@ -2,28 +2,64 @@
   padding: 20px 0;
 
   &__name {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 1.9rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.9rem;
   }
 
   &__text {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   &__bio {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 
-  &__books-list-title {
-      padding-top: 1rem;
+  &__book-list-title {
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: 0.5rem;
+    }
   }
 }
 
-.genre-list {
+
+.genres-list {
   display: flex;
+  padding-left: 2rem;
+
+  &__item {
+    color: #9e9e9e;
+  }
+}
+
+.authors-book-list {
+  display: flex;
+  padding: .5rem 0 .5rem 3rem;
+
+  &__item {
+    padding: .5rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #5d4037;
+
+    &:hover {
+      color: #4db6ac !important;
+    }
+  }
 }
 
 .mat-progress-spinner {
   margin-left: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  .authors-book-list {
+    flex-wrap: wrap;
+  }
 }

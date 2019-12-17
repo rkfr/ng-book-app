@@ -29,3 +29,11 @@
     margin: 1rem;
   }
 }
+
+@media screen and (min-width: 992px) {
+  .genres-offer {
+    position: fixed;
+      bottom: 5vh;
+  }
+}
+

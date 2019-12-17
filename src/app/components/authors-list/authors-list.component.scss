@@ -7,8 +7,27 @@
   
   &__text {
     padding-left: 1rem;
+
+    &:hover {
+      color: #dd2c00;
+    }
+  }
+
+  &__book-text {
+    font-size: .9rem;
+    padding-left: 0.5rem;
+
+    &:hover {
+      color: #29b6f6;
+    }
+  }
+
+  &__book-link {
+    text-decoration: none;
+    
   }
 }
+
 
 .mat-progress-spinner {
   margin-left: 50%;

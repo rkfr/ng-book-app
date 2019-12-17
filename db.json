@@ -389,5 +389,39 @@
             "authors": ["Francis Scott Key Fitzgerald"],
             "genre": ["Classics"]
         }
-    ]
+    ],
+    "genres": [
+        {
+            "id": "historical",
+            "name": "Historical"
+        },
+        {
+            "id": "fiction",
+            "name": "Fiction"
+        },
+        {
+            "id": "cultural",
+            "name": "Cultural"
+        },
+        {
+            "id": "classics",
+            "name": "Classics"
+        },
+        {
+            "id": "mystery",
+            "name": "Mystery"
+        },
+        {
+            "id": "romance",
+            "name": "Romance"
+        },
+        {
+            "id": "novel",
+            "name": "Novel"
+        },
+        {
+            "id": "horror",
+            "name": "Horror"
+        }
+    ] 
 }

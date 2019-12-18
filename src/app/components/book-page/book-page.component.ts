@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { GenreService } from '../../services/genre.service';
 import { Book } from '../../interfaces/book.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-page',
@@ -17,19 +18,11 @@ export class BookPageComponent implements OnInit {
     private genreService: GenreService
   ) { }
 
-  private loading: boolean = true;
-
-  book: Book;
-  bookId: string;
+  book: Observable<Book>;
 
   ngOnInit() {
     this.route.params.subscribe(({ id }) => {
-      this.bookId = id;
-    });
-
-    this.bookService.loadBook(this.bookId).subscribe((book: Book) => {
-      this.book = book;
-      this.loading = false;
+      this.book = this.bookService.loadBook(id);
     });
   }
 

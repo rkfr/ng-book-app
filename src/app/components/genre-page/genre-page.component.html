@@ -2,13 +2,17 @@
   <h2>Books for the selected genre:</h2>
   <mat-chip-list aria-label="Genre selection">
     <mat-chip>
-      {{ genre || 'No genre selected' }}
+      {{ genre || 'Select genre below' }}
     </mat-chip>
   </mat-chip-list>
   <mat-divider></mat-divider>
 
   <div *ngIf="!isLoading">
-    <mat-table *ngIf="genre; else genresGroup" [dataSource]="booksByGenre" class="mat-elevation-z8">
+    <mat-table 
+      *ngIf="genre; else genresGroup" 
+      [dataSource]="booksByGenre" 
+      class="mat-elevation-z8"
+    >
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef> Book title </mat-header-cell>
         <mat-cell *matCellDef="let book">
@@ -33,10 +37,13 @@
   </div>
   
   <ng-template #genresGroup>
-    <h3>Select:</h3>
     <div class="genres-group">
-      <button mat-raised-button *ngFor="let genre of genresList" (click)="onGenreSelected(genre.name)"
-        class="genres-group__button">
+      <button 
+        mat-raised-button 
+        *ngFor="let genre of genresList" 
+        (click)="onGenreSelected(genre.name)"
+        class="genres-group__button"
+      >
         {{ genre.name }}
       </button>
     </div>
@@ -48,8 +55,12 @@
       <h3>Select another genre:</h3>
       <div class="genres-group">
         <ng-container *ngFor="let genre of genresList">
-          <button mat-raised-button *ngIf="currentGenre !== genre.id" (click)="onGenreSelected(genre.name)"
-            class="genres-group__button">
+          <button 
+          mat-raised-button 
+          *ngIf="currentGenre !== genre.id" 
+          (click)="onGenreSelected(genre.name)"
+            class="genres-group__button"
+          >
             {{ genre.name }}
           </button>
         </ng-container>

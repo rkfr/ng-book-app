@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BookService } from '../../services/book.service';
 import { Book } from '../../interfaces/book.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -12,15 +13,10 @@ export class BookListComponent implements OnInit {
 
   constructor(private bookService: BookService, ) { }
 
-  isLoading: boolean = true;
-  booksMap: Book[];
-
+  books: BehaviorSubject<Book[]>;
   displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
-    this.bookService.books.subscribe(books => {
-      this.booksMap = books;
-      this.isLoading = false;
-    });
+    this.books = this.bookService.books;
   }
 }

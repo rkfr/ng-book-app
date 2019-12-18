@@ -15,12 +15,6 @@ export class AuthorsService {
 
   public authors: BehaviorSubject<Author[]> = new BehaviorSubject([]);
 
-  // loadAuthors() {
-  //   this.http.get(`${this.baseUrl}/authors`).subscribe((data: Author[]) => {
-  //     this.authors.next(data);
-  //   });
-  // }
-
   loadAuthors() {
     return this.http.get(`${this.baseUrl}/authors`)
       .pipe(

@@ -1,4 +1,4 @@
-<section *ngIf="!loading" class="author mat-typography">
+<section *ngIf="author | async as author" class="author mat-typography">
   <div class="container">
     <h1 class="author__name">{{ author.name }}</h1>
     <p class="author__text">{{ author.short_bio }}</p>
@@ -9,22 +9,12 @@
       <span>Books written by the author: </span>
     </h2>
     <mat-list class="authors-book-list">
-      <mat-list-item 
-        *ngFor="let book of author.books"
-        class="authors-book-list__item"
-      >
-        <a 
-          [routerLink]="['/books', book.id]" 
-          matLine
-          class="authors-book-list__link"
-        >
+      <mat-list-item *ngFor="let book of author.books" class="authors-book-list__item">
+        <a [routerLink]="['/books', book.id]" matLine class="authors-book-list__link">
           {{ book.title }}
         </a>
-        <ul matLine class="genres-list" >
-          <li 
-            *ngFor="let genre of book.genre"
-            class="genres-list__item"
-          >
+        <ul matLine class="genres-list">
+          <li *ngFor="let genre of book.genre" class="genres-list__item">
             {{ genre }}
           </li>
         </ul>
@@ -32,6 +22,3 @@
     </mat-list>
   </div>
 </section>
-<div *ngIf="loading">
-  <mat-spinner></mat-spinner>
-</div>

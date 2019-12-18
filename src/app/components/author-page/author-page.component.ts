@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AuthorsService } from '../../services/authors.service';
 import { Author } from '../../interfaces/author.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-author-page',
@@ -15,19 +16,11 @@ export class AuthorPageComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  private loading: boolean = true;
-
-  author: Author;
-  authorId: string;
+  author: Observable<Author>;
 
   ngOnInit() {
     this.route.params.subscribe(({ id }) => {
-      this.authorId = id;
-    });
-
-    this.authorsService.loadAuthor(this.authorId).subscribe((author: Author) => {
-      this.author = author;
-      this.loading = false;
+      this.author = this.authorsService.loadAuthor(id);
     });
   }
 

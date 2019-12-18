@@ -35,7 +35,7 @@
   <ng-template #genresGroup>
     <h3>Select:</h3>
     <div class="genres-group">
-      <button mat-raised-button *ngFor="let genre of genresList" (click)="onSelectGenre(genre.name)"
+      <button mat-raised-button *ngFor="let genre of genresList" (click)="onGenreSelected(genre.name)"
         class="genres-group__button">
         {{ genre.name }}
       </button>
@@ -48,7 +48,7 @@
       <h3>Select another genre:</h3>
       <div class="genres-group">
         <ng-container *ngFor="let genre of genresList">
-          <button mat-raised-button *ngIf="currentGenre !== genre.id" (click)="onSelectGenre(genre.name)"
+          <button mat-raised-button *ngIf="currentGenre !== genre.id" (click)="onGenreSelected(genre.name)"
             class="genres-group__button">
             {{ genre.name }}
           </button>

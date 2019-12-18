@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { BookService } from '../../services/book.service';
 import { GenreService } from '../../services/genre.service';
@@ -14,41 +15,54 @@ export class GenrePageComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private genreService: GenreService,
+    private route: ActivatedRoute
   ) { }
 
   books: Book[];
   booksByGenre: Book[];
-  genre: string;
+  genre: string = '';
   genresList: Genre[];
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
-    this.genreService.genresList.subscribe(genres => {
-      this.genresList = genres;
-    });
+    this.isLoading = true;
 
     this.bookService.books.subscribe(books => {
       this.books = books;
       this.setFilterByGenre();
-
       this.isLoading = false;
     });
 
-    this.genreService.genre.subscribe(genre => {
-      this.genre = genre;
+    this.route.params.subscribe(({ id }) => {
+      this.genre = id;
       this.setFilterByGenre();
     });
+
+    this.genreService.genresList.subscribe(genres => {
+      this.genresList = genres;
+      this.setFilterByGenre();
+    });
+
   }
 
-  onSelectGenre(genre) {
-    this.genreService.updateGenre(genre);
+  onGenreSelected(genre) {
+    this.genre = genre.toLowerCase();
     this.setFilterByGenre();
   }
 
-  setFilterByGenre() {
-    this.booksByGenre = this.books.filter(({ genre }) => genre.includes(this.genre));
+  private setFilterByGenre() {
+    try {
+      this.booksByGenre = this.books.filter(({ genre: genres }) => (
+        genres
+          .map(genre => genre.toLowerCase())
+          .includes(this.genre.toLowerCase())
+      ));
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
 }

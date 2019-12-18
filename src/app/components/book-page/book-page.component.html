@@ -3,13 +3,21 @@
     <h1 class="book__title">{{ book.title }}</h1>
     <div class="book__about">
       <span>Genre: </span>
-      <a class="book__genre" [routerLink]="'/genre'" *ngFor="let genre of book.genre" (click)="onUpdateGenre(genre)">
+      <a 
+        class="book__genre"
+        *ngFor="let genre of book.genre" 
+        [routerLink]="'/genre/' + genre | lowercase"
+      >
         {{ genre }},
       </a>
     </div>
     <div class="book__about">
       <span>Author: </span>
-      <a [routerLink]="['/authors', book.author_id]" class="book__author" *ngFor="let author of book.authors">
+      <a 
+        [routerLink]="['/authors', book.author_id]" 
+        class="book__author"
+        *ngFor="let author of book.authors"
+      >
         {{ author }}
       </a>
     </div>

@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Book } from '../interfaces/book.interface';
+import { switchMapTo, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class BookService {
   public books: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
   loadBooks() {
-    return this.http
-      .get(`${this.baseUrl}/books`)
-      .subscribe((data: Book[]) => {
-        this.books.next(data);
-      });
+    return this.http.get(`${this.baseUrl}/books`)
+      .pipe(
+        tap((data: Book[]) => this.books.next(data)),
+        switchMapTo(this.books)
+      );
   }
 
   loadBook(bookId: string) {

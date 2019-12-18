@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthorsService } from '../../services/authors.service';
 import { Author } from '../../interfaces/author.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-authors-list',
@@ -12,13 +13,9 @@ export class AuthorsListComponent implements OnInit {
 
   constructor(private authorsService: AuthorsService) { }
 
-  isLoading = true;
-  authors: Author[];
+  authors: BehaviorSubject<Author[]>;
 
   ngOnInit() {
-    this.authorsService.authors.subscribe(authors => {
-      this.authors = authors;
-      this.isLoading = false;
-    })
+    this.authors = this.authorsService.authors;
   }
 }

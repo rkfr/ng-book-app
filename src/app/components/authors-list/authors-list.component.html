@@ -1,7 +1,7 @@
-<section *ngIf="!isLoading" class="mat-typography">
+<section *ngIf="authors | async" class="mat-typography">
   <h2>List of authors: </h2>
   <mat-accordion multi="true">
-    <mat-expansion-panel *ngFor="let author of authors">
+    <mat-expansion-panel *ngFor="let author of authors | async">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Author
@@ -15,11 +15,7 @@
         <span class="author-link__text">Show authors page</span>
       </a>
       <mat-list>
-        <a 
-          [routerLink]="['/books', book.id]" 
-          *ngFor="let book of author.books"
-          class="author-link__book-link"
-        >
+        <a [routerLink]="['/books', book.id]" *ngFor="let book of author.books" class="author-link__book-link">
           <mat-list-item>
             <mat-icon>chrome_reader_mode</mat-icon>
             <span class="author-link__book-text">{{ book.title }}</span>
@@ -29,6 +25,3 @@
     </mat-expansion-panel>
   </mat-accordion>
 </section>
-<div *ngIf="isLoading">
-  <mat-spinner></mat-spinner>
-</div>

@@ -25,6 +25,11 @@
                 <a [routerLink]="'/authors/' + author.id">{{ author.name }}</a>
               </mat-option>
             </mat-optgroup>
+            <mat-optgroup [label]="'Genre'" *ngIf="(genresOptions | async)?.length">
+              <mat-option *ngFor="let genre of genresOptions | async">
+                <a [routerLink]="'/genre/' + genre.id">{{ genre.name }}</a>
+              </mat-option>
+            </mat-optgroup>
             
           </mat-autocomplete>
           <mat-hint>For example: The Guardian; Oscar Wilde; Novel;</mat-hint>

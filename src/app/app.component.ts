@@ -8,6 +8,7 @@ import { AuthorsService } from './services/authors.service';
 import { GenreService } from './services/genre.service';
 import { Book } from './interfaces/book.interface';
 import { Author } from './interfaces/author.interface';
+import { Genre } from './interfaces/genre.interface';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
 
   booksOptions: Observable<Book[]>
   authorsOptions: Observable<Author[]>
+  genresOptions: Observable<Genre[]>
 
   ngOnInit() {
     this.bookService.loadBooks().subscribe(books => {
@@ -40,6 +42,13 @@ export class AppComponent implements OnInit {
       this.authorsOptions = this.formControl.valueChanges.pipe(
         startWith(''),
         map(value => authors.filter(book => book.name.toLowerCase().includes(value)))
+      );
+    });
+
+    this.genreService.loadGenresList().subscribe(genres => {
+      this.genresOptions = this.formControl.valueChanges.pipe(
+        startWith(''),
+        map(value => genres.filter(genre => genre.name.toLowerCase().includes(value)))
       );
     });
   }

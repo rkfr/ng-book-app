@@ -5,19 +5,35 @@
         <h1>Book App</h1>
       </a>
       <form class="search-form">
+        
         <mat-form-field>
-          <input matInput type="text" placeholder="Search..." [formControl]="searchControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.title">
-              <a mat-list-item [routerLink]="option.pagePath" class="search-item" (click)="onUpdateGenre(option.title)">
-                {{ option.pageName }} | {{ option.title }}
-              </a>
-            </mat-option>
+          <input 
+            matInput 
+            type="text" 
+            placeholder="Search..."
+            [matAutocomplete]="auto"
+            [formControl]="formControl"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-optgroup [label]="'Books'" *ngIf="(booksOptions | async)?.length">
+              <mat-option *ngFor="let book of booksOptions | async">
+                <a [routerLink]="'/books/' + book.id">{{ book.title }}</a>
+              </mat-option>
+            </mat-optgroup>
+            <mat-optgroup [label]="'Authors'" *ngIf="(authorsOptions | async)?.length">
+              <mat-option *ngFor="let author of authorsOptions | async">
+                <a [routerLink]="'/authors/' + author.id">{{ author.name }}</a>
+              </mat-option>
+            </mat-optgroup>
+            
           </mat-autocomplete>
           <mat-hint>For example: The Guardian; Oscar Wilde; Novel;</mat-hint>
 
+          
+
         </mat-form-field>
       </form>
+
 
       <mat-nav-list class="nav">
         <a mat-list-item [routerLink]="'/authors'">Authors</a>

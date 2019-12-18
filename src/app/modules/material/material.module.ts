@@ -13,6 +13,7 @@ import {
   MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatOptionModule,
+  MatSelectModule,
 } from '@angular/material';
 
 const material = [
@@ -28,7 +29,8 @@ const material = [
   MatChipsModule,
   MatProgressSpinnerModule,
   MatOptionModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSelectModule
 ];
 
 @NgModule({

@@ -7,10 +7,10 @@
   </mat-chip-list>
   <mat-divider></mat-divider>
 
-  <div *ngIf="!isLoading">
+  <div>
     <mat-table 
       *ngIf="genre; else genresGroup" 
-      [dataSource]="booksByGenre" 
+      [dataSource]="books" 
       class="mat-elevation-z8"
     >
       <ng-container matColumnDef="title">
@@ -38,14 +38,14 @@
   
   <ng-template #genresGroup>
     <div class="genres-group">
-      <button 
+      <a
         mat-raised-button 
         *ngFor="let genre of genresList" 
-        (click)="onGenreSelected(genre.name)"
         class="genres-group__button"
+        [routerLink]="['/genre/' + genre.id]"
       >
         {{ genre.name }}
-      </button>
+      </a>
     </div>
   </ng-template>
 
@@ -55,18 +55,17 @@
       <h3>Select another genre:</h3>
       <div class="genres-group">
         <ng-container *ngFor="let genre of genresList">
-          <button 
-          mat-raised-button 
-          *ngIf="currentGenre !== genre.id" 
-          (click)="onGenreSelected(genre.name)"
+          <a 
+            mat-raised-button 
+            *ngIf="currentGenre !== genre.id" 
+            [routerLink]="['/genre/' + genre.id]"
             class="genres-group__button"
           >
             {{ genre.name }}
-          </button>
+          </a>
         </ng-container>
       </div>
     </div>
   </div>
 
 </section>
-

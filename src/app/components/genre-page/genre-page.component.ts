@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { BookService } from '../../services/book.service';
 import { GenreService } from '../../services/genre.service';
 import { Book } from '../../interfaces/book.interface';
 import { Genre } from '../../interfaces/genre.interface';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-genre-page',
@@ -18,51 +20,32 @@ export class GenrePageComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  books: Book[];
-  booksByGenre: Book[];
-  genre: string = '';
-  genresList: Genre[];
-  isLoading: boolean = false;
 
-  displayedColumns: string[] = ['title', 'author'];
+
+  books = new MatTableDataSource<Book>();
+  genresList: Genre[];
+  genre: string;
+
+  displayedColumns: string[] = ['title', 'author'];  
 
   ngOnInit() {
-    this.isLoading = true;
 
-    this.bookService.books.subscribe(books => {
-      this.books = books;
-      this.setFilterByGenre();
-      this.isLoading = false;
-    });
+        combineLatest(
+          this.bookService.books, 
+          this.genreService.genresList,
+          this.route.params
+          )
+          .subscribe(([books, genresList, genre]) => {
 
-    this.route.params.subscribe(({ id }) => {
-      this.genre = id;
-      this.setFilterByGenre();
-    });
+            this.genresList = genresList;
+            this.genre = genre.id;
 
-    this.genreService.genresList.subscribe(genres => {
-      this.genresList = genres;
-      this.setFilterByGenre();
-    });
-
-  }
-
-  onGenreSelected(genre) {
-    this.genre = genre.toLowerCase();
-    this.setFilterByGenre();
-  }
-
-  private setFilterByGenre() {
-    try {
-      this.booksByGenre = this.books.filter(({ genre: genres }) => (
-        genres
-          .map(genre => genre.toLowerCase())
-          .includes(this.genre.toLowerCase())
-      ));
-    }
-    catch(err) {
-      console.log(err);
-    }
+            this.books.data = books.filter(({ genre: genres }) => (
+              genres
+                .map(genre => genre.toLowerCase())
+                .includes(genre.id)
+            ));
+          })
   }
 
 }

@@ -22,7 +22,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BookPageComponent,
     AuthorPageComponent,
     GenrePageComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

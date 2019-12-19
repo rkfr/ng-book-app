@@ -17,17 +17,32 @@
           <mat-autocomplete #auto="matAutocomplete">
             <mat-optgroup [label]="'Books'" *ngIf="(booksOptions | async)?.length">
               <mat-option *ngFor="let book of booksOptions | async">
-                <a [routerLink]="'/books/' + book.id">{{ book.title }}</a>
+                <a 
+                  [routerLink]="'/books/' + book.id" 
+                  class="autocomplete-link autocomplete-link--book"
+                >
+                  {{ book.title }}
+                </a>
               </mat-option>
             </mat-optgroup>
             <mat-optgroup [label]="'Authors'" *ngIf="(authorsOptions | async)?.length">
               <mat-option *ngFor="let author of authorsOptions | async">
-                <a [routerLink]="'/authors/' + author.id">{{ author.name }}</a>
+                <a 
+                  [routerLink]="'/authors/' + author.id" 
+                  class="autocomplete-link autocomplete-link--name"
+                >
+                  {{ author.name }}
+                </a>
               </mat-option>
             </mat-optgroup>
             <mat-optgroup [label]="'Genre'" *ngIf="(genresOptions | async)?.length">
               <mat-option *ngFor="let genre of genresOptions | async">
-                <a [routerLink]="'/genre/' + genre.id">{{ genre.name }}</a>
+                <a 
+                  [routerLink]="'/genre/' + genre.id" 
+                  class="autocomplete-link autocomplete-link--genre"
+                >
+                  {{ genre.name }}
+                </a>
               </mat-option>
             </mat-optgroup>
             

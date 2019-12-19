@@ -41,6 +41,24 @@
   text-decoration: none;
 }
 
+.autocomplete-link {
+  display: block;
+  text-decoration: none;
+  font-size: .85rem;
+
+  &--book {
+    color: #5c6bc0;
+  }
+
+  &--name {
+    color: #26a69a;
+  }
+
+  &--genre {
+    color: #ab47bc;
+  }
+}
+
 @media screen and (min-width: 576px) {
   .container {
     max-width: 540px;

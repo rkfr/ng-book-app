@@ -1,5 +1,5 @@
 
-## Weather App
+## Book App
 
 Technologies used: Angular, Typescript, Angular Material UI
 

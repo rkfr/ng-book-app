@@ -1,1 +1,1 @@
-export const URL: string = 'http://localhost:3004';
+export const URL = 'https://rk-books-api.herokuapp.com';

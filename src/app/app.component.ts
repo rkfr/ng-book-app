@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   formControl = new FormControl();
 
-  booksOptions: Observable<Book[]>
-  authorsOptions: Observable<Author[]>
-  genresOptions: Observable<Genre[]>
+  booksOptions: Observable<Book[]>;
+  authorsOptions: Observable<Author[]>;
+  genresOptions: Observable<Genre[]>;
 
   ngOnInit() {
     this.bookService.loadBooks().subscribe(books => {

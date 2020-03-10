@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMapTo, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { URL } from '../constants/api';
 })
 export class BookService {
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) { }
 
   public books: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
@@ -26,4 +26,4 @@ export class BookService {
   loadBook(bookId: string) {
     return this.http.get<Book>(`${URL}/books/${bookId}`);
   }
-};
+}

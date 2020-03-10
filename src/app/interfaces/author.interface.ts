@@ -3,5 +3,5 @@ export interface Author {
   name: string;
   short_bio: string;
   bio: string;
-  books: string[],
+  books: string[];
 }

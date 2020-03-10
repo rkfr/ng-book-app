@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { tap, switchMapTo } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { URL } from '../constants/api';
 })
 export class AuthorsService {
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) { }
 
   public authors: BehaviorSubject<Author[]> = new BehaviorSubject([]);
 
@@ -20,7 +20,7 @@ export class AuthorsService {
       .pipe(
         tap((data: Author[]) => this.authors.next(data)),
         switchMapTo(this.authors)
-      )
+      );
   }
 
   loadAuthor(authorId: string) {

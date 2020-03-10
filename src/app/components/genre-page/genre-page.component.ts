@@ -26,12 +26,12 @@ export class GenrePageComponent implements OnInit {
   genresList: Genre[];
   genre: string;
 
-  displayedColumns: string[] = ['title', 'author'];  
+  displayedColumns: string[] = ['title', 'author'];
 
   ngOnInit() {
 
         combineLatest(
-          this.bookService.books, 
+          this.bookService.books,
           this.genreService.genresList,
           this.route.params
           )
@@ -42,10 +42,10 @@ export class GenrePageComponent implements OnInit {
 
             this.books.data = books.filter(({ genre: genres }) => (
               genres
-                .map(genre => genre.toLowerCase())
+                .map(genreName => genreName.toLowerCase())
                 .includes(genre.id)
             ));
-          })
+          });
   }
 
 }

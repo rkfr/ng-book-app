@@ -27,4 +27,4 @@ Technologies used: Angular, Typescript, Angular Material UI
 #### Search
 When entering characters, we show matches in the drop-down list, the list is divided into groups Author, Book, Genre
 
-Open [demo link](https://ng-books-app.herokuapp.com/) to view it (Heroku).
+Open [demo link](https://ng-books-app.herokuapp.com/) to view it (keep calm when heroku starts).
